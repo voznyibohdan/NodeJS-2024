@@ -4,7 +4,7 @@ module.exports = {
     static: { port: 8000 },
     api: {
         port: 8001,
-        transport: 'ws'
+        transport: 'fastify'
     },
     sandbox: {
         timeout: 5000,

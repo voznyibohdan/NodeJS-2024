@@ -34,7 +34,7 @@ module.exports = (routing, port, console) => {
         console.log(`${socket.remoteAddress} ${method} ${url}`);
         const result = await handler (args);
         response.end(JSON.stringify (result));
-    }).listen (port);
+    }).listen(port);
 
     console.log(`API on port ${port}`);
 };

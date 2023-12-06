@@ -8,7 +8,7 @@ const db = require('./db.js')(config.db);
 const load = require('./load.js')(config.sandbox);
 
 const staticServer = require('./static.js');
-const transport = require(`./transport/${config.api.transport}.js`)
+const transport = require(`./transports/${config.api.transport}.js`)
 
 const logger = require('./logger.js');
 const hash = require('./hash.js');
