@@ -7,8 +7,8 @@ const config = require('./config');
 const db = require('./db.js')(config.db);
 const load = require('./load.js')(config.sandbox);
 
-const server = require('./ws.js');
 const staticServer = require('./static.js');
+const transport = require(`./transport/${config.api.transport}.js`)
 
 const logger = require('./logger.js');
 const hash = require('./hash.js');
@@ -16,7 +16,7 @@ const hash = require('./hash.js');
 const sandbox = {
     console: Object.freeze(logger),
     db: Object.freeze(db),
-    common: {hash},
+    common: { hash },
 };
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
@@ -30,6 +30,6 @@ const routing = {};
         routing[serviceName] = await load(filePath, sandbox);
     }
 
-    staticServer('./static', config.static.port);
-    server(routing, config.api.port);
+    staticServer('./static', config.static.port, logger);
+    transport(routing, config.api.port, logger);
 })();
